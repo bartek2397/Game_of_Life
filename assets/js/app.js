@@ -3,35 +3,77 @@ const widthInput = document.querySelector('#width');
 const heightInput = document.querySelector('#height');
 const cell = document.querySelector('.cell');
 const gameWrapper = document.querySelector('.gameWrapper');
-let widthSize = parseInt(widthInput.value);
-let heightSize = parseInt(heightInput.value);
-const gameTable = [];
+let gameTable = [];
 
-let btnTextStart = 'Start Game'
-let btnTextStop = 'Stop Game'
 
 startButton.addEventListener('click', () => {
     startButton.classList.toggle('stop')
     if (startButton.classList.contains('stop') === true) {
-        startButton.textContent = `${btnTextStop}`
-        initGameTable();
+        startButton.textContent = `Stop Game`;
+        initBoard();
+        createBoard();
      } else {
-        startButton.textContent = `${btnTextStart}`
+        startButton.textContent = `Start Game`
      }; 
 })
 
-function initGameTable (widthSize, heightSize) {
-    const cellWidth = Math.floor(gameWrapper.clientWidth / widthSize);
-    const cellHeight = Math.floor(gameWrapper.clientHeight / heightSize);
-        for (i = 1; i = heightSize; i++) {
-            const singleRow = []
-            for (j = 1; j= widthSize; j++) {
-                singleRow.push(j)
-            }
-            
-        }        
+function initBoard () {
+    let widthSize =  parseInt(widthInput.value);
+    let heightSize = parseInt(heightInput.value);
+    for (i = 1; i <= heightSize; i++) {
+        let row = []
+        for (j = 1; j <= widthSize; j++) {
+            row.push(j)
+        }
+        gameTable.push(row) 
+    }
 }
 
-function createBoard () {
-    singleRow.forEach()
+function createBoard() {
+    gameTable.forEach((rowItems, rowIndex) => {
+        const row = document.createElement('div')
+        row.classList.add('row')
+        row.setAttribute('row', `${rowIndex}`)
+        rowItems.forEach((cellValue, cellIndex) => {
+            const cell = document.createElement('div')
+            cell.classList.add('cell')
+            cell.id = `${rowIndex}-${cellIndex}`
+            row.append(cell)
+        });
+        gameWrapper.append(row)
+    })
 }
+
+
+
+
+// function initGameTable () {
+//     gameWrapper.innerHTML = '';
+//     const cellWidth = Math.floor(gameWrapper.clientWidth / parseInt(widthInput.value));
+//     const cellHeight = Math.floor(gameWrapper.clientHeight / parseInt(heightInput.value));
+//     const gameTable = []
+//         for (i = 1; i <= parseInt(heightInput.value); i++) {
+//             const row = []
+//             for (j = 1; j <= parseInt(widthInput.value); j++) {
+//                 row.push(0)
+//             }
+//             gameTable.push(row)
+//         }
+    
+    
+//     gameTable.forEach((rowItems, rowIndex) => {
+//         const row = document.createElement('div')
+//         row.classList.add('row')
+//         row.setAttribute('row', `${rowIndex}`)
+//         rowItems.forEach((cellIndex, cellValue) => {
+//             const cell = document.createElement('div')
+//             cell.classList.add('cell');
+//             cell.id = `${rowIndex}-${cellIndex}`;
+//             cell.style.width = `${cellWidth}px`;
+//             cell.style.height = `${cellHeight}px`;
+//             row.appendChild(cell);
+//         });
+//         gameWrapper.innerHTML.appendChild(row)
+//     })
+    
+// }
