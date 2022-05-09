@@ -1,0 +1,13 @@
+.gameWrapper {
+  margin-top: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.gameWrapper .cell {
+  width: 20px;
+  height: 20px;
+  border: 0.1px solid black;
+}
