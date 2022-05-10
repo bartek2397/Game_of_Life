@@ -3,6 +3,7 @@ const widthInput = document.querySelector('#width');
 const heightInput = document.querySelector('#height');
 const cell = document.querySelector('.cell');
 const gameWrapper = document.querySelector('.gameWrapper');
+const resetButton = document.querySelector('.reset');
 let gameTable = [];
 
 
@@ -30,6 +31,7 @@ function initBoard () {
 }
 
 function createBoard() {
+    resetBoard();
     gameTable.forEach((rowItems, rowIndex) => {
         const row = document.createElement('div')
         row.classList.add('row')
@@ -41,6 +43,16 @@ function createBoard() {
             row.append(cell)
         });
         gameWrapper.append(row)
+    })
+}
+
+function resetBoard() {
+    resetButton.addEventListener('click', () => {
+        startButton.classList.remove('start')
+        widthInput.value = 0
+        heightInput.value = 0
+        gameTable = []
+        gameWrapper.innerHTML = ``
     })
 }
 
