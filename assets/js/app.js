@@ -48,14 +48,18 @@ function createBoard() {
 
 function resetBoard() {
     resetButton.addEventListener('click', () => {
-        startButton.classList.remove('start')
+        startButton.classList.remove('stop')
+        startButton.textContent = `Start Game`
         widthInput.value = 0
         heightInput.value = 0
-        gameTable = []
         gameWrapper.innerHTML = ``
     })
 }
-
+function cellClick () {
+    cell.addEventListener('click', () => {
+        cell.classList.toggle('active')
+    })
+}
 
 
 
